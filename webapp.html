@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Smart RFID Dashboard</title>
+  <title>JEWELLERY INVENTORY DASHBOARD</title>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
   <style>
     body {
-      background-image: url('BG.jpg');
+      background-image: url('bg4.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       background-attachment: fixed;
+      color: white; /* Set default text color to white */
     }
 
     h2 {
@@ -26,7 +27,7 @@
     }
 
     button {
-      padding: 12px 25px;
+      padding: 10px 25px;
       margin: 8px;
       font-size: 16px;
       cursor: pointer;
@@ -60,6 +61,20 @@
       color: #ffffff; /* Improved visibility */
       text-align: center;
       margin-bottom: 15px;
+    }
+        /* Table styles */
+        table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #e3f2fd; /* Light blue background */
+    }
+    th {
+      background-color: #90caf9; /* Light blue header */
+      color: white; /* White text for header */
+    }
+    td {
+      background-color: #bbdefb; /* Light blue cells */
+      color: black; /* Black text for cells */
     }
 
     /* Other styles remain unchanged */
@@ -104,21 +119,23 @@
     }
     /* 🔥 Exciting Modal Style */
     .modal-popup {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(1);
-      background: linear-gradient(135deg, #ffffff, #e3f2fd);
-      padding: 30px 25px;
-      border-radius: 15px;
-      border: 3px solid #2196f3;
-      box-shadow: 0 20px 50px rgba(33, 150, 243, 0.4);
-      z-index: 1000;
-      animation: popIn 0.4s ease-out forwards;
-      width: 350px;
-      max-width: 90%;
-      font-family: 'Segoe UI', sans-serif;
-    }
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  background: #0d47a1; /* Dark blue background */
+  color: white; /* White text color for readability */
+  padding: 30px 25px;
+  border-radius: 15px;
+  border: 3px solid #2196f3; /* Optional: border color */
+  box-shadow: 0 20px 50px rgba(33, 150, 243, 0.4);
+  z-index: 1000;
+  animation: popIn 0.4s ease-out forwards;
+  width: 350px;
+  max-width: 90%;
+  font-family: 'Segoe UI', sans-serif;
+}
+
 
     /* Animation */
     @keyframes popIn {
@@ -136,17 +153,16 @@
 <body>
 <div class="overlay"></div>
 
-<h2>RFID Dashboard</h2>
+<h2>JEWELLERY INVENTORY DASHBOARD</h2>
 <div class="center-btns">
   <button onclick="promptDatasetSelection('add')">➕ Add/Update Data</button>
-  <button onclick="promptDatasetSelection('show')">📊 Show/Manage Data
+  <button onclick="promptDatasetSelection('show')">📊 Show/Manage Data</button>
 </div>
 <div id="status">Waiting for scan...</div>
 <div id="content"></div>
 
 <audio id="authorizedSound" preload="auto">
   <source src="correct.wav" type="audio/wav">
-</
 </audio>
 <audio id="unauthorizedSound" preload="auto">
   <source src="incorrect.wav" type="audio/wav">
@@ -345,7 +361,7 @@ function showPriceAndCategoryPopup(uid, place) {
     <div class="input-box"><label>Category:</label><input id="popup-category" /></div>
     <div class="input-box"><label>Price:</label><input id="popup-price" type="number" /></div>
     <button onclick="submitLockerUpdate('${uid}', '${place}')">✅ Submit</button>
-    <button onclick="closeLogPopup()">❌ Cancel</button>
+    <button onclick="closeLogPopup()">❌ Cancel</button> <!-- Close popup on cancel -->
   </div>
   <div id="overlay" onclick="closeLogPopup()"></div>`;
   document.body.insertAdjacentHTML('beforeend', popupHtml);
@@ -366,7 +382,7 @@ function submitLockerUpdate(uid, place) {
   firebase.database().ref(`product/${uid}/logs`).push(timestamp);
   firebase.database().ref(`product/${uid}`).update(updates).then(() => {
     showStatus("✅ Product updated at LOCKER!", "success");
-    closeLogPopup();
+    closeLogPopup(); // Close the popup after submission
   }).catch(error => {
     showStatus("❌ Failed to update: " + error.message, "warning");
   });
