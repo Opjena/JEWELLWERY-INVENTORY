@@ -243,21 +243,12 @@ function showStatus(msg, type = "") {
   const el = document.getElementById("status");
   el.innerText = msg;
   el.className = type;
+
   // Create a popup for authorized and unauthorized messages
-  if (type === "success") {
+  if (type === "success" || type === "warning") {
     const popupHtml = `
       <div class="modal-popup">
-        <h3>Authorized</h3>
-        <p>${msg}</p>
-        <button onclick="closePopup()">Close</button>
-      </div>
-      <div id="overlay" onclick="closePopup()"></div>
-    `;
-    document.body.insertAdjacentHTML('beforeend', popupHtml);
-  } else if (type === "warning") {
-    const popupHtml = `
-      <div class="modal-popup">
-        <h3>Unauthorized</h3>
+        <h3>${type === "success" ? "Authorized" : "Unauthorized"}</h3>
         <p>${msg}</p>
         <button onclick="closePopup()">Close</button>
       </div>
@@ -266,8 +257,9 @@ function showStatus(msg, type = "") {
     document.body.insertAdjacentHTML('beforeend', popupHtml);
   }
 }
+
 function closePopup() {
-  document.querySelectorAll("div[style*='z-index: 1000'], #overlay").forEach(el => el.remove());
+  document.querySelectorAll(".modal-popup, #overlay").forEach(el => el.remove());
 }
 
 function playSound(type) {
@@ -279,6 +271,7 @@ function playSound(type) {
     showStatus("❌ Unauthorized", "warning");
   }
 }
+
 
 firebase.database().ref("last_scanned").on("value", snapshot => {
   const data = snapshot.val();
