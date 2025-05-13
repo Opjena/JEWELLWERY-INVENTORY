@@ -5,40 +5,39 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
   <style>
-    body {
-      background-image: url('bg4.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      color: white; /* Set default text color to white */
-    }
-
-    h2 {
-      text-align: center;
-      color: #ffffff; /* Improved visibility */
-    }
-
-    .center-btns {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 15px;
-    }
-
-    button {
-      padding: 10px 25px;
-      margin: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      border-radius: 30px;
-      border: none;
-      background: linear-gradient(145deg, #1e88e5, #42a5f5);
-      color: white; /* Improved letter color */
-      transition: all 0.3s ease;
-      box-shadow: 0 8px 15px rgba(0, 123, 255, 0.2);
-    }
-
+body {
+  background-image: url('bg4.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: white; /* Set default text color to white */
+  font-size: 18px; /* Increase base font size */
+}
+h2 {
+  text-align: center;
+  color: #ffffff; /* Improved visibility */
+  font-size: 24px; /* Increase heading size */
+  margin-top: 20px; /* Add margin to move it lower */
+}
+.center-btns {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 30px; /* Increase margin to move buttons lower */
+}
+button {
+  padding: 12px 30px; /* Increase button padding */
+  margin: 10px; /* Increase margin between buttons */
+  font-size: 18px; /* Increase button text size */
+  cursor: pointer;
+  border-radius: 30px;
+  border: none;
+  background: linear-gradient(145deg, #1e88e5, #42a5f5);
+  color: white; /* Improved letter color */
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 15px rgba(0, 123, 255, 0.2);
+  }
     button:hover {
       background: linear-gradient(145deg, #1565c0, #2196f3);
       box-shadow: 0 0 15px #2196f3;
@@ -50,11 +49,12 @@
     }
 
     #status {
-      padding: 10px;
-      margin-top: 10px;
-      font-weight: bold;
-      color: #ffffff; /* Improved visibility */
-    }
+  padding: 15px; /* Increase padding */
+  margin-top: 20px; /* Increase margin to move it lower */
+  font-weight: bold;
+  color: #ffffff; /* Improved visibility */
+  font-size: 20px; /* Increase status text size */
+}
 
     /* New styles for the dataset selection heading */
     .dataset-selection h3 {
